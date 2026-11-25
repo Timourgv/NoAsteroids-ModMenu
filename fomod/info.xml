@@ -1,0 +1,7 @@
+<fomod>
+  <Name>No Asteroids - Mod Menu</Name>
+  <Author>Timour</Author>
+  <Version>2.2.0</Version>
+  <Description>In-game HOME-key mod menu: price multiplier x2/x4/x6/x8/x16, infinite credits toggle, tool upgrade level cap x2/x4 (HIT POWER/TEMPO/SWEEP/LUCK past 20), Lance+Slicer 10/s fire rate, live sale + tool stat readouts. Install the menu with Install-Mod-Menu.bat after deployment.</Description>
+  <Website></Website>
+</fomod>

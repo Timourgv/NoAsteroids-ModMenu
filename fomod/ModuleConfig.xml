@@ -1,0 +1,72 @@
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://qconsulting.bluethunder.com/xml/fommod/moduleConfig.xsd">
+  <moduleName>No Asteroids - Mod Menu</moduleName>
+  <requiredInstallFiles>
+    <file source="Patch-ModMenu.ps1"/>
+    <file source="Install-Mod-Menu.bat"/>
+    <file source="README.md"/>
+  </requiredInstallFiles>
+  <installSteps order="Explicit">
+    <installStep name="Default multiplier">
+      <optionalFileGroups order="Explicit">
+        <group name="Menu startup multiplier (changeable in-game at any time)" type="SelectExactlyOne">
+          <plugins order="Explicit">
+            <plugin name="OFF (start menu at vanilla prices)">
+              <description>Menu starts with prices unmodified. Toggle x2-x16 any time in-game.</description>
+              <files>
+                <file source="multipliers\off.txt" destination="money-multiplier.txt" priority="0"/>
+              </files>
+              <conditionFlags>
+                <flag name="multiplier">off</flag>
+              </conditionFlags>
+            </plugin>
+            <plugin name="x2 (double prices)">
+              <description>Prices drift daily between 1.5x and 2.7x of base. Exactly double the vanilla economy.</description>
+              <files>
+                <file source="multipliers\x2.txt" destination="money-multiplier.txt" priority="0"/>
+              </files>
+              <conditionFlags>
+                <flag name="multiplier">x2</flag>
+              </conditionFlags>
+            </plugin>
+            <plugin name="x4 (quadruple prices)" type="Recommended">
+              <description>Prices drift daily between 3.0x and 5.4x of base. The classic x4 default.</description>
+              <files>
+                <file source="multipliers\x4.txt" destination="money-multiplier.txt" priority="0"/>
+              </files>
+              <conditionFlags>
+                <flag name="multiplier">x4</flag>
+              </conditionFlags>
+            </plugin>
+            <plugin name="x6 (sextuple prices)">
+              <description>Prices drift daily between 4.5x and 8.1x of base.</description>
+              <files>
+                <file source="multipliers\x6.txt" destination="money-multiplier.txt" priority="0"/>
+              </files>
+              <conditionFlags>
+                <flag name="multiplier">x6</flag>
+              </conditionFlags>
+            </plugin>
+            <plugin name="x8 (octuple prices)">
+              <description>Prices drift daily between 6.0x and 10.8x of base.</description>
+              <files>
+                <file source="multipliers\x8.txt" destination="money-multiplier.txt" priority="0"/>
+              </files>
+              <conditionFlags>
+                <flag name="multiplier">x8</flag>
+              </conditionFlags>
+            </plugin>
+            <plugin name="x16 (crazy)">
+              <description>Prices drift daily between 12x and 21.6x of base. For testing builds or absolute madlads.</description>
+              <files>
+                <file source="multipliers\x16.txt" destination="money-multiplier.txt" priority="0"/>
+              </files>
+              <conditionFlags>
+                <flag name="multiplier">x16</flag>
+              </conditionFlags>
+            </plugin>
+          </plugins>
+        </group>
+      </optionalFileGroups>
+    </installStep>
+  </installSteps>
+</config>
