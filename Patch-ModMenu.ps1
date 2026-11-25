@@ -348,7 +348,7 @@ window.addEventListener('keydown',function(ev){var open=panel&&panel.style.displ
   # when offset digit counts change - that moves the data base, but entry
   # offsets are unaffected by it, so one pass suffices.
   Log 'Rebuilding asar header ...'
-  $offsetRe = New-Object System.Text.RegularExpressions.Regex ('"offset":"(\d+)")')
+  $offsetRe = New-Object System.Text.RegularExpressions.Regex ('"offset":"(\d+)"')
   # 8a. shift offsets of entries that live after the bundle
   $ev = [System.Text.RegularExpressions.MatchEvaluator] {
     param($m)
