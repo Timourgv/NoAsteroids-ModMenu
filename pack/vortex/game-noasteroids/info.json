@@ -1,0 +1,6 @@
+{
+  "name": "Game: No Asteroids",
+  "author": "Timour",
+  "version": "2.0.0",
+  "description": "Adds No Asteroids to Vortex. Works with the Mod Menu mod (v2.x): warns to run the installer after deployment and restores the vanilla app.asar automatically when the mod is removed."
+}

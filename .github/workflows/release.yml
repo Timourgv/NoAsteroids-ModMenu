@@ -1,0 +1,54 @@
+name: Release
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'pack/**'
+      - '.github/workflows/release.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Ensure zip is available
+        run: command -v zip >/dev/null || { sudo apt-get update -qq && sudo apt-get install -y -qq zip; }
+
+      - name: Assemble packages
+        run: |
+          mkdir -p out/pkg/mod out/pkg/vortex
+          cp Patch-ModMenu.ps1 Install-Mod-Menu.bat out/pkg/mod/
+          cp -r fomod multipliers out/pkg/mod/
+          cp pack/mod/README.md out/pkg/mod/README.md
+          cp -r pack/vortex/. out/pkg/vortex/
+          cd out/pkg/mod     && zip -r ../../NoAsteroids-ModMenu-2.2.0.zip .            && cd ../../..
+          cd out/pkg/vortex  && zip -r ../../noasteroids-vortex-game-extension-2.0.0.zip . && cd ../../..
+          ls -la out/*.zip
+
+      - name: Publish GitHub release v2.2.0
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+        run: |
+          set -e
+          cd out
+          if gh release view v2.2.0 --repo "$REPO" >/dev/null 2>&1; then
+            echo "Release v2.2.0 already exists, refreshing assets."
+            gh release upload v2.2.0 \
+              NoAsteroids-ModMenu-2.2.0.zip \
+              noasteroids-vortex-game-extension-2.0.0.zip \
+              --clobber --repo "$REPO"
+          else
+            gh release create v2.2.0 \
+              NoAsteroids-ModMenu-2.2.0.zip \
+              noasteroids-vortex-game-extension-2.0.0.zip \
+              --title "No Asteroids Mod Menu v2.2.0" \
+              --notes-file ../pack/RELEASE_NOTES.md \
+              --repo "$REPO"
+          fi
