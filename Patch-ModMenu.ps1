@@ -1,5 +1,5 @@
 # ============================================================================
-#  No Asteroids - Mod Menu Patch (v2.2.0)
+#  No Asteroids - Mod Menu Patch (v2.2.1)
 #  - Installs an in-game MOD MENU (HOME key): price multiplier x2/x4/x6/x8/x16/OFF,
 #    infinite credits toggle, settings remembered between sessions.
 #  - v2.1.0: hotkey moved from F8 (game uses it) to HOME; fixed menu clicks
@@ -7,6 +7,8 @@
 #  - v2.2.0: NEW menu rows: tool upgrade level cap x1/x2/x4 (lifts the four tool
 #    upgrade rows HIT POWER / TEMPO / SWEEP / LUCK past level 20) and a
 #    Lance+Slicer fire-rate 10/s toggle, plus a live tool stats readout.
+#  - v2.2.1: packaging: one money-multiplier.txt at mod root replaces the
+#    FOMOD multipliers payload files (multipliers/off..x16.txt removed).
 #  - Rebuilds resources\app.asar from the untouched app.asar.bak by injecting
 #    a small payload + two hooks into the game bundle. Steam assets and the
 #  vanilla backup are preserved.
@@ -174,7 +176,7 @@ var cfg=loadCfg();
 var NA=window.__NA||(window.__NA={});
 NA.money=cfg.money;
 NA.floor=99999999;
-NA.version='2.2.0';
+NA.version='2.2.1';
 var MULTS={0:[.75,.6],2:[1.5,1.2],4:[3,2.4],6:[4.5,3.6],8:[6,4.8],16:[12,9.6]};
 function applyMult(){var t=MULTS[cfg.mult]||MULTS[4];wo.lo=t[0];wo.span=t[1]}
 NA.setMult=function(m){if(m===0||m===2||m===4||m===6||m===8||m===16){cfg.mult=m;saveCfg(cfg);applyMult();updateUI()}};
@@ -490,7 +492,7 @@ window.addEventListener('keydown',function(ev){var open=panel&&panel.style.displ
   # 12. state file for NMM/Vortex tooling
   # --------------------------------------------------------------------------
   $stateTxt = "installd=" + (Get-Date -Format 'yyyy-MM-dd HH:mm:ss') + "`r`n" +
-              "version=2.2.0`r`n" +
+              "version=2.2.1`r`n" +
               "result=MENU_OK`r`n" +
               "bundlesha=" + $newHex + "`r`n" +
               "defmult=" + $defMult + "`r`n"

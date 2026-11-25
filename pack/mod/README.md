@@ -32,6 +32,14 @@ The multiplier scales the price TERMINALS PAY when you sell ore (the daily
 drift between 0.75x and 1.35x of base in vanilla). It does NOT change shop
 BUY prices (tools, slot upgrades): those are fixed game prices.
 
+## Startup default: money-multiplier.txt
+
+The menu's startup multiplier comes from `money-multiplier.txt` in the game
+folder - a single plain text file containing `4` by default. Before the first
+launch you can edit it to `2`, `6`, `8`, `16` or `off`. After the first launch
+the menu remembers your in-game choice instead, and every setting is always
+changeable live (HOME), no relaunch needed.
+
 ## What the level cap changes
 
 The game blocks the four tool upgrade rows at level 20 ("20/20 Max"). The cap
@@ -50,8 +58,9 @@ Vortex does not know this game by default, so there are two one-time installs:
 2. In the Vortex dashboard, find **No Asteroids** under Apps, click **Manage**
    and point it to your game folder (the one containing `No Asteroids.exe`).
 3. **The mod:** Mods -> `Install from file` -> pick
-   `NoAsteroids-ModMenu-2.2.0.zip`. The installer asks for the default
-   multiplier the menu starts with (you can still change it in-game).
+   `NoAsteroids-ModMenu-2.2.1.zip`. It installs without questions; the menu
+   starts at x4. (Different startup multiplier? Edit `money-multiplier.txt`
+   in the game folder before first launch - or just change it in-game.)
 4. Enable the mod and let Vortex deploy. The extension detects that the menu
    is not installed yet and notifies you: open the game folder and
    **double-click `Install-Mod-Menu.bat`** once. Close the game first; the
@@ -92,12 +101,14 @@ From then on it behaves like a normal Vortex mod:
   powershell -ExecutionPolicy Bypass -File .\Patch-ModMenu.ps1 -RestoreVanilla
   ```
 
-## Upgrading from v2.0.0 or v2.1.0
+## Upgrading from v2.0.0 / v2.1.0 / v2.2.0
 
 Re-run `Install-Mod-Menu.bat` (it always rebuilds from the pristine backup).
-v2.2.0 adds the tool upgrade level cap (x2/x4), the Lance+Slicer 10/s fire
-rate toggle and the tool stats readout. Your saved menu settings (multiplier,
-infinite credits) carry over.
+Your saved menu settings (multiplier, infinite credits) carry over.
+- v2.2.0 added the tool upgrade level cap (x2/x4), the Lance+Slicer 10/s fire
+  rate toggle and the tool stats readout.
+- v2.2.1 is a packaging cleanup: a single `money-multiplier.txt` replaces the
+  per-option FOMOD multiplier files. No functional changes.
 
 ## Upgrading from v1.x
 

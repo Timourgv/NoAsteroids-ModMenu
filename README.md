@@ -21,18 +21,19 @@ Press **HOME** in-game to open the menu. All cheats can be toggled live, at any 
 
 ## Install (standalone)
 
-1. Download the repo (Code -> Download ZIP) and extract it into the game folder (next to `No Asteroids.exe`).
+1. Download `NoAsteroids-ModMenu-2.2.1.zip` from the [releases](https://github.com/Timourgv/NoAsteroids-ModMenu/releases) page and extract it into the game folder (next to `No Asteroids.exe`).
 2. Close the game, double-click `Install-Mod-Menu.bat`.
 3. Launch the game and press **HOME**.
 
 ## Install (Vortex)
 
-A companion Vortex game extension registers No Asteroids so this mod can be managed like a normal Vortex mod (auto-verify on deploy, automatic vanilla restore on removal). Enable the mod, deploy, then run `Install-Mod-Menu.bat` once. The mod zip is FOMOD-capable and asks for your preferred startup multiplier.
+A companion Vortex game extension registers No Asteroids so this mod can be managed like a normal Vortex mod (auto-verify on deploy, automatic vanilla restore on removal). Enable the mod, deploy, then run `Install-Mod-Menu.bat` once. The mod zip installs without questions; the menu startup multiplier is set by `money-multiplier.txt` (below).
 
 ## How it works / safety
 
 - `Install-Mod-Menu.bat` runs `Patch-ModMenu.ps1` (Windows PowerShell 5.1 compatible), which rebuilds `resources\app.asar` from the untouched `app.asar.bak` by injecting a small menu module and two hooks into the game's JavaScript bundle, then re-verifies every entry's SHA256 integrity (file + per-block hashes) before swapping it in. If any check fails, nothing is changed.
 - The vanilla backup is never modified.
+- `money-multiplier.txt` in the game folder (a single text file, default `4`) sets the menu's startup price multiplier; accepted values: `2`, `6`, `8`, `16`, `off`. After first launch the menu's own saved settings take over.
 - Everything is logged to `modmenu-patch-log.txt`; NMM/Vortex tooling can read `modmenu-state.txt`.
 - Your save file is not edited; progress is stored by the game like any normal progress.
 
@@ -46,7 +47,7 @@ Or, with Vortex, disable/remove the mod and deploy - the extension restores the 
 
 ## Upgrading
 
-Re-run `Install-Mod-Menu.bat` (it always rebuilds from the pristine backup, so no leftover patches accumulate). Saved menu settings carry over.
+Re-run `Install-Mod-Menu.bat` (it always rebuilds from the pristine backup, so no leftover patches accumulate). Saved menu settings carry over. In v2.2.1 the six per-option FOMOD multiplier files were consolidated into this single `money-multiplier.txt`.
 
 ## Disclaimer
 
